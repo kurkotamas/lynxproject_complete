@@ -34,41 +34,25 @@
                     <th>Name</th>
                     <th>E-mail</th>
                     <th>Phone</th>
+                    <th>Registered</th>
                     <th>Edit</th>
                     <th>Delete</th>
                     <th>Unverify</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>John Doe</td>
-                    <td>jdoe@gmail.com</td>
-                    <td>0712345678</td>
-                    <td><button class="btn btn-primary">Edit</button></td>
-                    <td><button class="btn btn-danger">Delete</button></td>
-                    <td><button class="btn btn-warning">Unverify</button></td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Will Johnson</td>
-                    <td>will@yahoo.com</td>
-                    <td>07789584326</td>
-                    <td><button class="btn btn-primary">Edit</button></td>
-                    <td><button class="btn btn-danger">Delete</button></td>
-                    <td><button class="btn btn-warning">Unverify</button></td>
-
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Shannon Williams</td>
-                    <td>shannon@yahoo.com</td>
-                    <td>07456812365</td>
-                    <td><button class="btn btn-primary">Edit</button></td>
-                    <td><button class="btn btn-danger">Delete</button></td>
-                    <td><button class="btn btn-warning">Unverify</button></td>
-
-                </tr>
+                @foreach($users as $user)
+                    <tr>
+                        <th scope="row">{{ $user->id }}</th>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->phone }}</td>
+                        <td>{{ $user->created_at->diffForHumans() }}</td>
+                        <td><button class="btn btn-primary btn-sm">Edit</button></td>
+                        <td><button class="btn btn-danger btn-sm">Delete</button></td>
+                        <td><button class="btn btn-warning btn-sm">Unverify</button></td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
             <nav>

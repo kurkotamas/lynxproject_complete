@@ -27,7 +27,12 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="text" name="phone" placeholder="Phone Number">
+                        <input class="form-control @error('phone') is-invalid @enderror" type="text" name="phone" placeholder="Phone Number" value="{{ old('phone') }}" autofocus>
+                        @error('phone')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <input class="form-control @error('password') is-invalid @enderror" type="password" name="password" placeholder="Password" autocomplete="new-password">
@@ -53,13 +58,13 @@
                         <button type="submit" class="btn btn-danger btn-block">Register</button>
                     </div>
                 </form>
-                @if (count($errors) > 0)
-                    <script>
-                        $(document).ready(function() {
-                            $('#registerModal').modal('show');
-                        });
-                    </script>
-                @endif
+                {{--@if (count($errors) > 0)--}}
+                    {{--<script>--}}
+                        {{--$(document).ready(function() {--}}
+                            {{--$('#registerModal').modal('show');--}}
+                        {{--});--}}
+                    {{--</script>--}}
+                {{--@endif--}}
             </div>
         </div>
     </div>
