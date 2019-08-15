@@ -15,6 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 })->name('index');
 
-Auth::routes();
+Route::get('/terms_and_conditions', function () {
+    $terms = \App\Term::all();
+    return view('terms.terms_and_conditions', compact('terms'));
+})->name('terms_and_conditions');
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes(['verify' => true]);
+
+Route::group(['middleware'=>['verified', 'auth']], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('users', 'User\UserController', ['only' => ['edit', 'destroy', 'update']]);
+    Route::resource('terms', 'Term\TermController');
+    Route::match(['put', 'patch'],'users/{user}/unverify', 'User\UserController@unverify')->name('users.unverify');
+});
+
+

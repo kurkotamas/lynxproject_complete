@@ -48,9 +48,29 @@
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone }}</td>
                         <td>{{ $user->created_at->diffForHumans() }}</td>
-                        <td><button class="btn btn-primary btn-sm">Edit</button></td>
-                        <td><button class="btn btn-danger btn-sm">Delete</button></td>
-                        <td><button class="btn btn-warning btn-sm">Unverify</button></td>
+                        <td><a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm">Edit</a></td>
+                        <td>
+                        {{--DELETE USER FORM--}}
+                        {!! Form::open(['method'=>'DELETE', 'action'=>['User\UserController@destroy', $user->id]])!!}
+
+                        <div class="form-group">
+                        {!! Form::submit('Delete', ['class'=>'btn btn-danger btn-sm']) !!}
+                        </div>
+
+                        {!! Form::close() !!}
+                        </td>
+                        <td>
+                        {{-- UNVERIFY USER FORM--}}
+                            @if($user->email_verified_at)
+                                {!! Form::open(['method'=>'PATCH', 'action'=>['User\UserController@unverify', $user->id]])!!}
+                                <div class="form-group">
+                                    {!! Form::submit('Unverify', ['class'=>'btn btn-warning btn-sm']) !!}
+                                </div>
+                                {!! Form::close() !!}
+                            @else
+                                <button class="btn btn-secondary btn-sm disabled">Unverify</button>
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
