@@ -1,12 +1,12 @@
 #index-body {
-    background: url(../images/background2.jpg);
+    background: url(../images/background_index.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
 }
 
 #home-body {
-    background: url(../images/background.jpg);
+    background: url(../images/background_home.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

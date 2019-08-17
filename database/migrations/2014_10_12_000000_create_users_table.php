@@ -21,8 +21,6 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->string('password');
             $table->timestamp('terms_accepted')->nullable();
-            $table->string('verified')->default(\App\User::UNVERIFIED_USER);
-            $table->string('verification_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

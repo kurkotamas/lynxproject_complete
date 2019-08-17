@@ -6,7 +6,9 @@
         <div id="users-border" class="container py-4">
             <div class="d-flex justify-content-between">
                 <h1 class="text-white px-2">Terms</h1>
-                <a href="{{ route('terms.create') }}" class="btn btn-success mr-3">Create Term</a>
+                <div class="form-group">
+                    <a href="{{ route('terms.create') }}" class="btn btn-success mr-3">Create Term</a>
+                </div>
             </div>
             <hr>
             <div  class="container">

@@ -1,4 +1,4 @@
-@if(\Illuminate\Support\Facades\Auth::user() && !\App\UserTerm::is_accepted(\Illuminate\Support\Facades\Auth::user()->id))
+@if(\App\Term::last_term_id() and \Illuminate\Support\Facades\Auth::user() and !\App\UserTerm::is_accepted(\Illuminate\Support\Facades\Auth::user()->id))
     <div class="container">
         <div class="row">
             <div class="col">

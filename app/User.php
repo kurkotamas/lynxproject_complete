@@ -12,10 +12,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $table = 'users';
 
-    const VERIFIED_USER = '1';
-    const UNVERIFIED_USER = '0';
-
-
     /**
      * The attributes that are mass assignable.
      *
@@ -26,8 +22,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'email',
         'phone',
         'password',
-        'verified',
-        'verification_token',
         'terms_accepted',
     ];
 
