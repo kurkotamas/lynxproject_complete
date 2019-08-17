@@ -17,6 +17,7 @@ class CreateTermsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('content');
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
     }

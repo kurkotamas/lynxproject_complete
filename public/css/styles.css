@@ -33,3 +33,11 @@ hr {
     padding-right: 10px;
     height: 40px;
 }
+
+#users .form-control::-webkit-input-placeholder {
+    color: black;
+}
+
+#alert {
+    padding-top: 70px;
+}

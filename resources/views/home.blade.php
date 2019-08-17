@@ -24,10 +24,16 @@
 <!-- USERS -->
 <div id="users">
     <div id="users-border" class="container py-4">
-        <h1 class="text-white px-2">Users</h1>
+        <div class="row">
+            <h1 class="col text-white px-4">Users</h1>
+            <div class="col-md-4 ml-auto form-group">
+                <input class="form-control bg-secondary text-white" type="text" name="search_user" id="search_user" placeholder="Search">
+            </div>
+        </div>
+
         <hr>
         <div  class="container">
-            <table class="table table-striped bg-white">
+            <table id="users_table" class="table table-striped bg-white">
                 <thead>
                 <tr>
                     <th>ID</th>
@@ -47,17 +53,12 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone }}</td>
-                        <td>{{ $user->created_at->diffForHumans() }}</td>
+                        <td>{{ \Carbon\Carbon::parse($user->created_at)->diffForHumans()}}</td>
                         <td><a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary btn-sm">Edit</a></td>
                         <td>
-                        {{--DELETE USER FORM--}}
-                        {!! Form::open(['method'=>'DELETE', 'action'=>['User\UserController@destroy', $user->id]])!!}
-
-                        <div class="form-group">
-                        {!! Form::submit('Delete', ['class'=>'btn btn-danger btn-sm']) !!}
-                        </div>
-
-                        {!! Form::close() !!}
+                        {{--DELETE USER WITH AJAX--}}
+                            <meta name="csrf-token" content="{{ csrf_token() }}">
+                            <button class="deleteRecord btn btn-danger btn-sm" data-id="{{ $user->id }}" >Delete</button>
                         </td>
                         <td>
                         {{-- UNVERIFY USER FORM--}}
@@ -68,7 +69,9 @@
                                 </div>
                                 {!! Form::close() !!}
                             @else
-                                <button class="btn btn-secondary btn-sm disabled">Unverify</button>
+                                <div class="form-group">
+                                    <button class="btn btn-secondary btn-sm disabled">Unverify</button>
+                                </div>
                             @endif
                         </td>
                     </tr>
@@ -77,25 +80,12 @@
             </table>
             <nav>
                 <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                        <a class="page-link" href="#">Previous</a>
-                    </li>
-                    <li class="page-item active">
-                        <a class="page-link" href="#">1</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">2</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">3</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
-                    </li>
+                    {{ $users->links() }}
                 </ul>
             </nav>
         </div>
     </div>
 </div>
+
 
 @endsection

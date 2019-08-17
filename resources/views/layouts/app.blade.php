@@ -66,7 +66,6 @@
                                 @csrf
                                 <button type="submit" class="btn btn-danger btn-block dropdown-item">Logout</button>
                             </form>
-
                         </div>
                     </div>
                 </li>
@@ -74,6 +73,8 @@
         </div>
     </div>
 </nav>
+@include('alerts.terms_alert')
+
 <div id="content">
     @yield('content')
 </div>

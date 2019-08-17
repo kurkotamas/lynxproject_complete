@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -30,10 +30,25 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, User $user)
     {
-        //
-        return $user;
+//        return $request->all();
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'max:255', 'unique:users,email, ' . $user->id],
+            'phone' => ['required', 'numeric', 'unique:users,phone, ' . $user->id],
+            'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/']
+        ]);
+        $request['password'] = Hash::make($request->password);
+        $user->email = $request['email'];
+
+        if($user->isDirty()){
+            $user->email_verified_at = null;
+            $user->sendEmailVerificationNotification();
+        }
+        $user->update($request->all());
+        return redirect('home');
     }
 
     /**
@@ -42,10 +57,13 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
+
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect('home');
+        return response()->json([
+            'success' => 'User deleted successfully!'
+        ]);
     }
 
     public function unverify(User $user)

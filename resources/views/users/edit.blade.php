@@ -16,23 +16,52 @@
 
                         <div class="form-group">
                             {!! Form::label('name', 'Name:') !!}
-                            {!! Form::text('name', null, ['class'=>'form-control'])!!}
+                                {!! Form::text('name', null, ['class'=>'form-control'])!!}
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('email', 'E-mail:') !!}
                             {!! Form::text('email', null, ['class'=>'form-control'])!!}
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('phone', 'Phone Number:') !!}
                             {!! Form::text('phone', null, ['class'=>'form-control'])!!}
+                            @error('phone')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             {!! Form::label('password', 'Password:') !!}
                             {!! Form::password('password', ['class'=>'form-control'])!!}
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
                         </div>
+
+                        <div class="form-group">
+                            {!! Form::label('password_confirmation', 'Confirm Password:') !!}
+                            {!! Form::password('password_confirmation', ['class'=>'form-control'])!!}
+                        </div>
+
+                        @foreach($errors->all() as $error)
+                            <p class="text-danger">{{ $error }}</p>
+                        @endforeach
 
                         <div class="form-group">
                             {!! Form::submit('Edit User', ['class'=>'btn btn-primary']) !!}

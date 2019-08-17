@@ -7,11 +7,9 @@
                 <button class="close" data-dismiss="modal">×</button>
             </div>
             <div class="modal-body">
-                @foreach($terms as $term)
-                    <h3>{{$term->name}}</h3>
-                    <small><p class="font-italic text-secondary pl-1">{{$term->created_at->format('Y-m-d') }}</p></small>
-                    <p class="lead pl-3">{{$term->content}}</p>
-                @endforeach
+                <h3>{{$term->name}}</h3>
+                <small><p class="font-italic text-secondary pl-1">{{$term->published_at}}</p></small>
+                <p class="lead pl-3">{{$term->content}}</p>
             </div>
         </div>
     </div>

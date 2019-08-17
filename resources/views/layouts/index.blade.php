@@ -58,6 +58,9 @@
     </div>
 </nav>
 <!-- CONTENT -->
+@include('alerts.terms_alert')
+
+
 <div id="content">
     @yield('content')
 </div>
