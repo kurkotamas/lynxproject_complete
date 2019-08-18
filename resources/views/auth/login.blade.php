@@ -46,7 +46,6 @@
                                 <div class="col">
                                     <small>Forgot your <a href="{{ route('password.request') }}">password</a>?</small>
                                 </div>
-
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-primary btn-block">Login</button>

@@ -23,6 +23,7 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @if(!$terms->isEmpty())
                     @foreach($terms as $term)
                         <tr>
                             <th scope="row">{{ $term->id }}</th>
@@ -49,6 +50,9 @@
                             </td>
                         </tr>
                     @endforeach
+                    @else
+                        <tr><td>No terms</td></tr>
+                    @endif
                     </tbody>
                 </table>
                 <nav>

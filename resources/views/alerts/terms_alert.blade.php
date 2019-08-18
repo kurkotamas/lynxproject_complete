@@ -10,11 +10,7 @@
                             <input type="hidden" name="user_id" value="{{ \Illuminate\Support\Facades\Auth::user()->id }}" />
                             <input type="hidden" name="term_id" value="{{ \App\Term::last_term_id() }}" />
                             {!! Form::submit('Accept', ['class'=>'btn btn-danger btn-sm']) !!}
-
-{{--                        {{ \App\UserTerm::last_accepted_term(\Illuminate\Support\Facades\Auth::user()->id) }}--}}
-
-                        <a href="{{ route('currently_accepted_terms') }}" class="btn btn-warning btn-sm">Currently Accepted Terms</a>
-
+                            <a href="{{ route('currently_accepted_terms') }}" class="btn btn-warning btn-sm">Currently Accepted Terms</a>
                         {!! Form::close() !!}
                     </div>
                 </div>
